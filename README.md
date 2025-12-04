@@ -12,3 +12,8 @@ Also of note: I've been flashing the board from the Arduino IDE with the "DFRobo
 
 - [blink-and-count.ino](blink-and-count/blink-and-count.ino)
     - Does more or less what it says; counts up and flashes the corner pixels once a second.  This was written to establish the correct offsets for the display.
+
+## Useful Links
+
+- [u8g2lib Reference Wiki](https://github.com/olikraus/u8g2/wiki/u8g2reference)
+    - For looking up built-in functions for the display driver code
