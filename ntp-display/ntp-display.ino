@@ -10,8 +10,8 @@ const char* password = "PASSWORD";
 
 // NTP server setup
 const char* ntpServer = "pool.ntp.org";
-const long gmtOffset_sec = -28770;    // Adjust this for your timezone
-const int daylightOffset_sec = 3600;  // Adjust if DST is in effect
+const long gmtOffset_sec = -28790;    // Adjust this for your timezone, up (or less negative) = set time later, down (or more negative) = set time earlier, -28850 seems good for Pacific
+const int daylightOffset_sec = 0;  // Adjust if DST is in effect, 0 = no, 3600 = yes?
 
 #define OLED_RESET U8X8_PIN_NONE
 #define OLED_SDA 5
@@ -46,6 +46,12 @@ void printDateTime() {
   char time_buffer[20];
   snprintf(time_buffer, sizeof(time_buffer), formattedTime, formattedTime);
   u8g2.drawStr(xOffset + 0, yOffset + 25, time_buffer);
+  // u8g2.sendBuffer(); // No longer needed, we do this later
+
+  // Date
+  strftime(formattedTime, sizeof(formattedTime), "%m / %d / %Y", &timeinfo);
+  snprintf(time_buffer, sizeof(time_buffer), formattedTime, formattedTime);
+  u8g2.drawStr(xOffset + 0, yOffset + 35, time_buffer);
   u8g2.sendBuffer();
 }
 
